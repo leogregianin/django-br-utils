@@ -1,0 +1,6 @@
+[run]
+source = br_utils
+branch = 1
+
+[report]
+omit = br_utils/*tests*

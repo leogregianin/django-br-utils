@@ -1,0 +1,26 @@
+inherits:
+  - strictness_low
+
+uses:
+  - django
+
+pylint:
+  options:
+    max-line-length: 120
+  disable:
+    - import-outside-toplevel
+    - no-else-return
+    - no-else-raise
+    - consider-using-f-string
+    - raise-missing-from
+    # The Django settings module is only needed for finding foreign-key relationships from strings which we don't need.
+    - django-not-configured
+    - consider-using-generator
+
+pep8:
+  options:
+    max-line-length: 120
+
+mccabe:
+  options:
+    max-complexity: 9
