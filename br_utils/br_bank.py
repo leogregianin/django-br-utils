@@ -1,6 +1,6 @@
 
 BR_BANK_CHOICES = (
-    ('001', 'BCO DO BRASIL S.A.'),
+    ('001', 'BANCO DO BRASIL S.A.'),
     ('070', 'BRB - BCO DE BRASILIA S.A.'),
     ('272', 'AGK CC S.A.'),
     ('136', 'CONF NAC COOP CENTRAIS UNICRED'),
