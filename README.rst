@@ -27,7 +27,7 @@ com melhorias e adição de novas informações específicas para o Brasil.
 .. _0: https://github.com/django/django-localflavor
 
 Requisitos
-=======
+===================
 
 .. code-block:: shell
 
@@ -41,7 +41,7 @@ https://github.com/leogregianin/django-br-utils/actions
 
 
 Instalação
-=======
+===================
 
 .. code-block:: shell
 
@@ -60,7 +60,7 @@ Adicione **br_utils** em INSTALLED_APPS no settings.py:
 
 
 Como utilizar nos models
-=======
+===================
 
 .. code-block:: python
 
@@ -89,7 +89,7 @@ Como utilizar nos models
 
 
 Como utilizar nos forms
-=======
+===================
 
 .. code-block:: python
 
@@ -117,7 +117,7 @@ Como utilizar nos forms
 
 
 Contribuição
-=======
+===================
 
 Contribuições são sempre bem vindas.
 
