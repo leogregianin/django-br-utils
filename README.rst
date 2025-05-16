@@ -112,6 +112,44 @@ Adicione **br_utils** em INSTALLED_APPS no settings.py:
        banco = BRBankChoiceField()
 
 
+**Funções Utilitárias**
+
+O módulo também oferece funções utilitárias que podem ser importadas e utilizadas no seu projeto:
+
+.. code-block:: python
+
+   from django_br_utils.utils import get_states_of_brazil
+
+**get_states_of_brazil**
+
+Esta função retorna informações sobre os estados brasileiros.
+
+Parâmetros:
+  - ``federative_unit`` (opcional): A sigla da Unidade Federativa. Quando não informado, retorna todos os estados.
+  - ``capital_letter`` (opcional, padrão=False): Flag para retornar os nomes dos estados em letras maiúsculas.
+
+Retorno:
+  - Se ``federative_unit`` é informado e válido, retorna uma string com o nome do estado.
+  - Se ``federative_unit`` é None, retorna um dicionário com todas as siglas e nomes dos estados.
+  - Se ``capital_letter`` é True, retorna todos os valores em letras maiúsculas.
+
+Exemplos de uso:
+
+.. code-block:: python
+
+   # Obter todos os estados
+   estados = get_states_of_brazil()
+   # {'AC': 'acre', 'AL': 'alagoas', 'AP': 'amapá', ...}
+   
+   # Obter o nome de um estado específico
+   nome_estado = get_states_of_brazil('SP')
+   # 'são paulo'
+   
+   # Obter todos os estados em letras maiúsculas
+   estados_maiusculos = get_states_of_brazil(capital_letter=True)
+   # {'AC': 'ACRE', 'AL': 'ALAGOAS', 'AP': 'AMAPÁ', ...}
+
+
 **Contribuição**
 
 Contribuições são sempre bem vindas.
