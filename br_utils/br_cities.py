@@ -5199,6 +5199,7 @@ BR_CITY_CHOICES = (
     ('5101605', 'Barão de Melgaço-MT'),
     ('5101704', 'Barra do Bugres-MT'),
     ('5101803', 'Barra do Garças-MT'),
+    ('5101837', 'Boa Esperança do Norte-MT'),
     ('5101852', 'Bom Jesus do Araguaia-MT'),
     ('5101902', 'Brasnorte-MT'),
     ('5102504', 'Cáceres-MT'),
