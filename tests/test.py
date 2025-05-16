@@ -1,4 +1,3 @@
-
 from django.test import SimpleTestCase
 
 from br_utils import models
@@ -11,7 +10,12 @@ from br_utils.forms import (
     BRPostalCodeField,
     BRBankChoiceField
 )
-from br_utils.utils import get_states_of_brazil
+from br_utils.utils import (
+    get_states_of_brazil,
+    get_countries_of_brazil,
+    get_cities_of_brazil,
+    get_banks_of_brazil
+)
 from tests.forms import BRPersonProfileForm
 
 
@@ -322,3 +326,123 @@ class GetStatesOfBrazil(SimpleTestCase):
         for invalid_input in invalid_inputs:
             result = get_states_of_brazil(invalid_input)
             self.assertIsInstance(result, self.ALL_EXPECTED_STATES)
+
+
+class GetCountriesOfBrazil(SimpleTestCase):
+
+    ALL_EXPECTED_COUNTRIES = dict
+
+    def test_get_valid_country(self):
+        country_code = "1058"
+        country = get_countries_of_brazil(country_code=country_code)
+        expected_value = "brasil"
+
+        self.assertEqual(country, expected_value)
+
+    def test_get_return_all_countries_dict(self):
+        countries_capital_letter = get_countries_of_brazil(capital_letter=True)
+        countries_without_capital_letter = get_countries_of_brazil()
+
+        self.assertEqual(
+            type(countries_capital_letter),
+            self.ALL_EXPECTED_COUNTRIES
+        )
+        self.assertEqual(
+            type(countries_without_capital_letter),
+            self.ALL_EXPECTED_COUNTRIES
+        )
+
+    def test_country_code_invalid(self):
+        invalid_inputs = [1.0, "None", [None]]
+
+        for invalid_input in invalid_inputs:
+            result = get_countries_of_brazil(invalid_input)
+            self.assertIsInstance(result, self.ALL_EXPECTED_COUNTRIES)
+            
+    def test_capital_letter_option(self):
+        country_code = "1058"
+        country_lowercase = get_countries_of_brazil(country_code=country_code, capital_letter=False)
+        country_uppercase = get_countries_of_brazil(country_code=country_code, capital_letter=True)
+        
+        self.assertEqual(country_lowercase, "brasil")
+        self.assertEqual(country_uppercase, "BRASIL")
+
+
+class GetCitiesOfBrazil(SimpleTestCase):
+
+    ALL_EXPECTED_CITIES = dict
+
+    def test_get_valid_city(self):
+        city_code = "3550308"  # São Paulo
+        city = get_cities_of_brazil(city_code=city_code)
+        expected_value = "são paulo-sp"
+
+        self.assertEqual(city.lower(), expected_value.lower())
+
+    def test_get_return_all_cities_dict(self):
+        cities_capital_letter = get_cities_of_brazil(capital_letter=True)
+        cities_without_capital_letter = get_cities_of_brazil()
+
+        self.assertEqual(
+            type(cities_capital_letter),
+            self.ALL_EXPECTED_CITIES
+        )
+        self.assertEqual(
+            type(cities_without_capital_letter),
+            self.ALL_EXPECTED_CITIES
+        )
+
+    def test_city_code_invalid(self):
+        invalid_inputs = [1.0, "None", [None]]
+
+        for invalid_input in invalid_inputs:
+            result = get_cities_of_brazil(invalid_input)
+            self.assertIsInstance(result, self.ALL_EXPECTED_CITIES)
+
+    def test_capital_letter_option(self):
+        city_code = "3550308"  # São Paulo
+        city_lowercase = get_cities_of_brazil(city_code=city_code, capital_letter=False)
+        city_uppercase = get_cities_of_brazil(city_code=city_code, capital_letter=True)
+        
+        self.assertEqual(city_lowercase.lower(), "são paulo-sp".lower())
+        self.assertEqual(city_uppercase.upper(), "SÃO PAULO-SP".upper())
+
+
+class GetBanksOfBrazil(SimpleTestCase):
+
+    ALL_EXPECTED_BANKS = dict
+
+    def test_get_valid_bank(self):
+        bank_code = "001"
+        bank = get_banks_of_brazil(bank_code=bank_code)
+        expected_value = "bco do brasil s.a."
+
+        self.assertEqual(bank.lower(), expected_value.lower())
+
+    def test_get_return_all_banks_dict(self):
+        banks_capital_letter = get_banks_of_brazil(capital_letter=True)
+        banks_without_capital_letter = get_banks_of_brazil()
+
+        self.assertEqual(
+            type(banks_capital_letter),
+            self.ALL_EXPECTED_BANKS
+        )
+        self.assertEqual(
+            type(banks_without_capital_letter),
+            self.ALL_EXPECTED_BANKS
+        )
+
+    def test_bank_code_invalid(self):
+        invalid_inputs = [1.0, "None", [None], "999"]
+
+        for invalid_input in invalid_inputs:
+            result = get_banks_of_brazil(invalid_input)
+            self.assertIsInstance(result, self.ALL_EXPECTED_BANKS)
+
+    def test_capital_letter_option(self):
+        bank_code = "341"  # Itaú
+        bank_lowercase = get_banks_of_brazil(bank_code=bank_code, capital_letter=False)
+        bank_uppercase = get_banks_of_brazil(bank_code=bank_code, capital_letter=True)
+        
+        self.assertEqual(bank_lowercase.lower(), "itaú unibanco s.a.".lower())
+        self.assertEqual(bank_uppercase.upper(), "ITAÚ UNIBANCO S.A.".upper())
