@@ -55,11 +55,13 @@ class BRLocalFlavorTests(SimpleTestCase):
             '64.132.916/0001-88': '64.132.916/0001-88',
             '64-132-916/0001-88': '64-132-916/0001-88',
             '64132916/0001-88': '64132916/0001-88',
-            # '12.ABC.345/01DE-35': '12.ABC.345/01DE-35'
+            '12.ABC.345/01DE-35': '12.ABC.345/01DE-35',
+            'AB.CDE.FGH/IJKL-99': 'AB.CDE.FGH/IJKL-99'
         }
         short_version_valid = {
             '64132916000188': '64132916000188',
-            # '12ABC34501DE35': '12ABC34501DE35'
+            '12ABC34501DE35': '12ABC34501DE35',
+            'ABCDEFGHIJKL99': 'ABCDEFGHIJKL99'
         }
         valid = long_version_valid.copy()
         valid.update(short_version_valid)
@@ -70,7 +72,8 @@ class BRLocalFlavorTests(SimpleTestCase):
             '12.345.678/9012-10': error_format['invalid'],
             '12345678/9012-10': error_format['invalid'],
             '64.132.916/0001-XX': error_format['invalid'],
-            # '12.ABC.345/01DE-34': error_format['invalid'],
+            '12.ABC.345/01DE-34': error_format['invalid'],
+            'AB.CDE.FGH/IJKL-00': error_format['invalid'],
         }
         self.assertFieldOutput(BRCNPJField, valid, invalid)
 
@@ -234,11 +237,16 @@ class BRLocalFlavorTests(SimpleTestCase):
                 'cnpj': '64.132.916/0001-88',
                 'postal_code': '08552-170'
             },
-            # {
-            #     'cpf': '663.256.017-26',
-            #     'cnpj': '12.ABC.345/01DE-34',
-            #     'postal_code': '08552-170'
-            # }
+            {
+                'cpf': '663.256.017-26',
+                'cnpj': '12.ABC.345/01DE-35',
+                'postal_code': '08552-170'
+            },
+            {
+                'cpf': '663.256.017-26',
+                'cnpj': 'AB.CDE.FGH/IJKL-99',
+                'postal_code': '08552-170'
+            }
         ]
 
         for case in data_to_test:
