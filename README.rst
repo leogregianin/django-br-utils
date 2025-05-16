@@ -112,6 +112,21 @@ Adicione **br_utils** em INSTALLED_APPS no settings.py:
        banco = BRBankChoiceField()
 
 
+**Suporte para CNPJ Alfanumérico**
+
+.. note::
+   O campo BRCNPJField suporta CNPJ alfanumérico, permitindo a utilização de caracteres especiais 
+   (letras e números) no formato do CNPJ. Isso é útil para cenários especiais de testes ou aplicações
+   que necessitam trabalhar com códigos alfanuméricos.
+
+   Exemplos de formatos suportados:
+   
+   * '12.ABC.345/01DE-35'
+   * 'AB.CDE.FGH/IJKL-99'
+   * '12ABC34501DE35'
+   * 'ABCDEFGHIJKL99'
+
+
 **Funções Utilitárias**
 
 O módulo também oferece funções utilitárias que podem ser importadas e utilizadas no seu projeto:
